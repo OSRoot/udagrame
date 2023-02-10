@@ -12,7 +12,7 @@
     "dev": "npx ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prod": "npx tsc && node ./www/server.js",
     "clean": "rm -rf www/ || true",
-    "deploy": " eb list && eb use Udagramapi-env-1 && eb deploy",
+    "deploy": "eb list && eb use Udagramapi-env-1 && eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME && eb setenv POSTGRES_PASSWORD=$POSTGRES_PASSWORD && eb setenv POSTGRES_HOST=$POSTGRES_HOST && eb setenv POSTGRES_DB=$POSTGRES_DB &&  eb deploy",
     "build": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
